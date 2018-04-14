@@ -39,7 +39,7 @@ class Hello_UI_TestsUITests: XCTestCase {
         // Given
         app.launchEnvironment["authenticationServiceResult"] = "false"
         app.launch()
-
+        
         // When
         let emailTextField = app.textFields["E-mail"]
         emailTextField.tap()

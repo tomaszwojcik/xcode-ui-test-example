@@ -14,7 +14,7 @@ class FakeAuthenticationService: AuthenticationService {
     }
 
     private var environomentResult: Bool {
-        let value: String = ProcessInfo.processInfo.environment["authenticationServiceResult"]!
+        let value = ProcessInfo.processInfo.environment["authenticationServiceResult"] ?? "true"
         return (value as NSString).boolValue
     }
 }
