@@ -15,7 +15,7 @@ class Hello_UI_TestsUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         app = XCUIApplication()
-        app.launch()
+        app.launchArguments += ["UI-TESTING"]
     }
     
     override func tearDown() {
@@ -23,14 +23,24 @@ class Hello_UI_TestsUITests: XCTestCase {
     }
     
     func testLoginWithEmptyCredentials() {
+        // Given
+        app.launch()
+
+        // When
         let loginButton = app.buttons["Log in"]
         loginButton.tap()
 
+        // Then
         let error = app.staticTexts["Cannot be blank"]
         XCTAssertTrue(error.exists)
     }
 
     func testLoginWithInvalidCredentials() {
+        // Given
+        app.launchEnvironment["authenticationServiceResult"] = "false"
+        app.launch()
+
+        // When
         let emailTextField = app.textFields["E-mail"]
         emailTextField.tap()
         emailTextField.typeText("invalid_user")
@@ -40,14 +50,21 @@ class Hello_UI_TestsUITests: XCTestCase {
         passwordSecureTextField.typeText("secret")
 
         app.buttons["Log in"].tap()
+
+        // Then
         let error = app.staticTexts["Invalid credentials"]
         XCTAssertTrue(error.exists)
     }
 
     func testSuccessfulLogin() {
+        // Given
+        app.launchEnvironment["authenticationServiceResult"] = "true"
+        app.launch()
+
+        // When
         let emailTextField = app.textFields["E-mail"]
         emailTextField.tap()
-        emailTextField.typeText("user")
+        emailTextField.typeText("user@domain.com")
 
         let passwordSecureTextField = app.secureTextFields["Password"]
         passwordSecureTextField.tap()
@@ -55,6 +72,7 @@ class Hello_UI_TestsUITests: XCTestCase {
 
         app.buttons["Log in"].tap()
 
+        // Then
         let loggedInMessage = app.staticTexts["Logged in!"]
         XCTAssertTrue(loggedInMessage.exists)
     }

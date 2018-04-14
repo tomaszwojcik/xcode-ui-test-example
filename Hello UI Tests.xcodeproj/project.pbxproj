@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF5871DC2081D68C00DA4767 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5871DB2081D68C00DA4767 /* AuthenticationService.swift */; };
+		DF5871DE2081D93400DA4767 /* AppBootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5871DD2081D93400DA4767 /* AppBootstrap.swift */; };
+		DF5871E62081DDE100DA4767 /* DefaultAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5871E52081DDE100DA4767 /* DefaultAuthenticationService.swift */; };
+		DF5871EB2081E23300DA4767 /* FakeAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5871EA2081E23300DA4767 /* FakeAuthenticationService.swift */; };
+		DF5871ED2081E24300DA4767 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5871EC2081E24300DA4767 /* TestSupport.swift */; };
 		DFBCAC4B207E3CDB00D8DDFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBCAC4A207E3CDB00D8DDFA /* AppDelegate.swift */; };
 		DFBCAC4D207E3CDB00D8DDFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBCAC4C207E3CDB00D8DDFA /* ViewController.swift */; };
 		DFBCAC50207E3CDB00D8DDFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFBCAC4E207E3CDB00D8DDFA /* Main.storyboard */; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF5871DB2081D68C00DA4767 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		DF5871DD2081D93400DA4767 /* AppBootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBootstrap.swift; sourceTree = "<group>"; };
+		DF5871E52081DDE100DA4767 /* DefaultAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthenticationService.swift; sourceTree = "<group>"; };
+		DF5871EA2081E23300DA4767 /* FakeAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthenticationService.swift; sourceTree = "<group>"; };
+		DF5871EC2081E24300DA4767 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		DFBCAC47207E3CDB00D8DDFA /* Hello UI Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello UI Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBCAC4A207E3CDB00D8DDFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DFBCAC4C207E3CDB00D8DDFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +84,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF5871E92081E21C00DA4767 /* Test Support */ = {
+			isa = PBXGroup;
+			children = (
+				DF5871EC2081E24300DA4767 /* TestSupport.swift */,
+				DF5871EA2081E23300DA4767 /* FakeAuthenticationService.swift */,
+			);
+			path = "Test Support";
+			sourceTree = "<group>";
+		};
+		DF5871EE2081E29800DA4767 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DF5871DB2081D68C00DA4767 /* AuthenticationService.swift */,
+				DF5871E52081DDE100DA4767 /* DefaultAuthenticationService.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		DFBCAC3E207E3CDB00D8DDFA = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +125,10 @@
 		DFBCAC49207E3CDB00D8DDFA /* Hello UI Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DF5871EE2081E29800DA4767 /* Authentication */,
+				DF5871E92081E21C00DA4767 /* Test Support */,
 				DFBCAC4A207E3CDB00D8DDFA /* AppDelegate.swift */,
+				DF5871DD2081D93400DA4767 /* AppBootstrap.swift */,
 				DFBCAC4C207E3CDB00D8DDFA /* ViewController.swift */,
 				DFBCAC4E207E3CDB00D8DDFA /* Main.storyboard */,
 				DFBCAC51207E3CDC00D8DDFA /* Assets.xcassets */,
@@ -256,8 +287,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF5871DE2081D93400DA4767 /* AppBootstrap.swift in Sources */,
+				DF5871E62081DDE100DA4767 /* DefaultAuthenticationService.swift in Sources */,
+				DF5871EB2081E23300DA4767 /* FakeAuthenticationService.swift in Sources */,
+				DF5871DC2081D68C00DA4767 /* AuthenticationService.swift in Sources */,
 				DFBCAC4D207E3CDB00D8DDFA /* ViewController.swift in Sources */,
 				DFBCAC4B207E3CDB00D8DDFA /* AppDelegate.swift in Sources */,
+				DF5871ED2081E24300DA4767 /* TestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

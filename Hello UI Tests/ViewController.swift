@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private lazy var authenticationService: AuthenticationService = {
+        return AppDelegate.bootstrap.createAuthenticationService()
+    }()
+
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var emailHintLabel: UILabel!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -16,25 +20,20 @@ class ViewController: UIViewController {
 
     @IBAction func performLogin(_ sender: UIButton) {
         sender.isEnabled = false
-        defer {
-            print("Enabling button")
-            sender.isEnabled = true
-        }
+        defer { sender.isEnabled = true }
         resetHints()
         guard validateFields() else { return }
-        if validateCredentials() {
-            performSegue(withIdentifier: "showLoggedInScreen", sender: nil)
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        validateCredentials(email: email, password: password) { [weak self] isSuccess in
+            guard let strongSelf = self else { return }
+
+            if isSuccess {
+                strongSelf.performSegue(withIdentifier: "showLoggedInScreen", sender: nil)
+            } else {
+                strongSelf.showPasswordHint(message: "Invalid credentials")
+            }
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     private func resetHints() {
@@ -58,14 +57,10 @@ class ViewController: UIViewController {
         return result
     }
 
-    private func validateCredentials() -> Bool {
-        if emailTextField.text == "user" && passwordTextField.text == "secret" {
-            return true
-
-        } else {
-            showPasswordHint(message: "Invalid credentials")
-            return false
-        }
+    private func validateCredentials(email: String,
+                                     password: String,
+                                     completion: @escaping (Bool) -> Void) {
+        authenticationService.authenticate(email: email, password: password, completion: completion)
     }
 
     private func showEmailHint(message: String) {
